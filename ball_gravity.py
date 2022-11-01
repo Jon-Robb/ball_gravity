@@ -17,6 +17,8 @@ class Updatable(ABC):
     
     @abstractmethod
     def tick(self):
+        """Méthode abstraite qui sera redéfinie pour les balles
+        """
         pass
 
 class Gravitational(ABC):
