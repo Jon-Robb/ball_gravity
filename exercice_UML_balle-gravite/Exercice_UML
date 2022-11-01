@@ -1,0 +1,42 @@
+1. On a des balles dans un gameboard. Les balles ont une direction
+2. Si on appuie sur une flèche, la gravité s'applique dans la direction de la flèche ---> Lorsqu'on lâche la flèche, la balle perd la force de gravité.
+3. Quand on appuie sur spaceBar, on active ou désactive la gravité entre chaque balle 
+
+
+Ce qu'on a besoin : 
+1- position : x,y 
+2- vitesse : x,y 
+3- formule pour la fonction  :  - Pxt = Pxt-1 + Vxt-1 X t 
+                                - Pyt = Pyt-1 + Vt-1 X t 
+
+    
+Pour le numero 2 : Pt = Pt-1 + Vt-1 x T (+ 0.5at X t^2)  --> partie présente dans le premier mais à zéro.
+
+
+Code du diagramme usage : 
+[Acteur]-(Reset)
+(Reset)>(Réinitialise les positions des balles)
+[Acteur]-(Pause)
+(Pause)>(Garde les positions en mémoire)
+[Acteur]-(Resume)
+(Resume)>(Réinitialise le jeu avec les positions en mémoire)
+[Acteur]-(Appuie sur flèche)
+(Appuie sur flèche)>(gravité s'applique selon la flèche)
+(gravité s'applique selon la flèche)>(Balles changent de direction)
+[Acteur]-(Relâche flèche)
+(Relâche flèche)>(gravité ne s'applique plus)
+(gravité ne s'applique plus)>(Les balles gardent la dernière direction et vitesse qu'elles avaient)
+[Acteur]-(Appuie sur SpaceBar)
+(Appuie sur SpaceBar)>(Active ou désactive la gravité pour chaque balle)
+
+
+Code du diagramme de classes : 
+[Point|-x:float;-y:float|getX():float;getY():float]
+[Movable]++-0..*>[Point]
+[Movable|-position:Point;-vitesse:Point;-acceleration:float|move(time);bounce(height, width);applyGravity(time);tick()]
+[GameBoard|-height:float; -width:float;-canvas:tkinterCanvas|getHeight():float;getWidth():float]
+[GameBoard]++-0..*>[Movable]
+[Balle|gravityActivated:bool;]
+[≪Movable≫;Balle]-[Movable]
+[Game|time:float|getInput():point]
+[Game]-[GameBoard]
