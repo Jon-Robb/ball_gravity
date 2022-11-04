@@ -1,7 +1,8 @@
 
 from abc import ABC, abstractmethod
 import math
-from tkinter import E, N, W, S, ttk, Tk
+from tkinter import E, N, W, S, ttk, Tk 
+import tkinter as tk
 from turtle import bgcolor
 
 
@@ -57,7 +58,7 @@ class Game(ttk.Frame):
     def __init__(self, parent, size=Point(100, 100)):
         super().__init__(parent)
         self.size = size
-        self.label = ttk.Label(self, width=self.size.x, background='black')
+        self.label = tk.Label(self, width=self.size.x, background='black', height=self.size.y)
         self.label.grid()
 
 class Application(Tk):
