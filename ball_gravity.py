@@ -5,6 +5,10 @@ from tkinter import E, N, W, S, ttk, Tk
 import tkinter as tk
 from turtle import bgcolor
 
+#Mathématique:
+    # rad * 180/PI = degrés
+    # degré * PI/180 = rad 
+    
 
 class Point:
     def __init__(self, x, y):
@@ -53,6 +57,9 @@ class Ball(Updatable, Gravitational):
             self.speed.x = -self.speed.x
         elif self.__position.y <= 0 or self.__position.y >= game_dimension.y:
             self.speed.y = -self.speed.y
+            
+    def pull(self, ball):
+        pass 
 
 class Game(ttk.Frame):
     def __init__(self, parent, size=Point(100, 100)):
